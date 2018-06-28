@@ -96,101 +96,126 @@
 "use strict";
 
 
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-// 1: CLASSES
+// // 1: EXTENDING A CLASS
 var Recipe = function Recipe() {
-  _classCallCheck(this, Recipe);
+    _classCallCheck(this, Recipe);
 };
 
-var recipe = new Recipe();
+var Lasagna = function (_Recipe) {
+    _inherits(Lasagna, _Recipe);
 
-console.log(recipe instanceof Recipe);
+    function Lasagna() {
+        _classCallCheck(this, Lasagna);
 
-// 2: INSTANCES
+        return _possibleConstructorReturn(this, (Lasagna.__proto__ || Object.getPrototypeOf(Lasagna)).apply(this, arguments));
+    }
+
+    return Lasagna;
+}(Recipe);
+
+var Pho = function (_Recipe2) {
+    _inherits(Pho, _Recipe2);
+
+    function Pho() {
+        _classCallCheck(this, Pho);
+
+        return _possibleConstructorReturn(this, (Pho.__proto__ || Object.getPrototypeOf(Pho)).apply(this, arguments));
+    }
+
+    return Pho;
+}(Recipe);
+
+var c = new Pho();
+
+console.log(c);
+// console.log(c instanceof Object);
+
+
+// // 2: INHERITING CONSTRUCTORS
 // class Recipe {
-//   constructor(id, name) {
-//       this.id = id;
-//       this.name = name;
+//   constructor(cookTime) {
+//     this.cookTime = cookTime;
 //   }
 // }
 
-// let recipe = new Recipe('123', 'Lasagna');
+// class Lasagna extends Recipe {
 
-// console.log('recipe: ' + recipe['id'] + ' ' + recipe['name']);
-
-// 3: STATIC PROPERTIES
-// class Recipe {
-//   constructor(id, name) {
-//       this.id = id;
-//       this.name = name;
-//   }
 // }
-// Recipe.maxHeight = 2000;
 
-// let recipe = new Recipe('123', 'Lasagna');
-// let recipe2 = new Recipe('456', 'Toast');
-
-// console.log(recipe.maxHeight);
-
-// 4: METHODS
-// class Recipe {
-//   constructor(id, name) {
-//       this.id = id;
-//       this.name = name;
-//   }
-
-//   cook() {
-//       console.log('Recipe ' + this.id + ' is cookin');
+// class Pho extends Recipe {
+//   constructor(cookTime) {
+//     super(cookTime)
 //   }
 // }
 
-// let recipe = new Recipe('123', 'Lasagna');
-// let recipe2 = new Recipe('456', 'Toast');
+// let c = new Pho(120);
 
-// recipe.cook();
-// recipe2.cook();
+// console.log(c.cookTime);
 
-// 5: STATIC METHODS
+
+// // 3: INHERITING PROPERTIES
 // class Recipe {
-//   constructor(id, name) {
-//       this.id = id;
-//       this.name = name;
-//   }
-
-//   static getCompany() {
-//       console.log('hellooo');
-//   }
-
-//   cook() {
-//       console.log('recipe ' + this.id +' is cooking');
+//   constructor() {
+//       this.soup = false;
 //   }
 // }
 
-// let recipe = new Recipe('123', 'Lasagna');
-// let recipe2 = new Recipe('456', 'Toast');
+// class Lasagna extends Recipe {
 
-// Recipe.getCompany();
+// }
 
-// 6: GETTERS AND SETTERS
-// class Recipe {
-//   constructor(id) {
-//       this._id = id;
-//   }
-
-//   get id() {
-//       console.log('in id getter');
-//       return this._id + ' TEMPORARY';
-//   }
-
-//   set id(value) {
-//       this._id = value;
+// class Pho extends Recipe {
+//   constructor() {
+//       super();
+//       this.soup = true;
 //   }
 // }
 
-// let recipe = new Recipe('Toast');
-// recipe.id = '456';
-// console.log('recipe id: ' + recipe.id);
+// let c = new Pho();
+
+// console.log(c.soup);
+
+
+// // 4: INHERITING METHODS
+// class Recipes {
+//   start() {
+//       console.log('staring Recipes');
+//   }
+//   static getRegion() {
+//       console.log('My Region');
+//   }
+// }
+
+// class Lasagna extends Recipes {
+//   start() {
+//       super.start();
+//       console.log('staring Lasagna');
+//   }
+//   static getRegion() {
+//       super.getRegion();
+//       console.log('My Other Region');
+//   }
+// }
+
+// let c = new Lasagna();
+// Lasagna.getRegion();
+
+
+// // 5: SEPARATING CLASSES
+// import {Lasagna} from './classes/lasagna.js';
+// import {Pho} from './classes/pho.js';
+
+// let c = new Lasagna();
+// let d = new Pho();
+
+// console.log(c);
+// console.log(d);
 
 /***/ })
 
