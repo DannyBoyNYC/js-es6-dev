@@ -86,6 +86,72 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./src/fleet-data.js":
+/*!***************************!*\
+  !*** ./src/fleet-data.js ***!
+  \***************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+var fleet = exports.fleet = [{
+    license: 'ABC123',
+    type: 'drone',
+    model: 'Amazon 1250',
+    airTimeHours: '6050',
+    base: 'New York',
+    latLong: '40.775596 -73.974615'
+}, {
+    license: 'XYZ456',
+    type: 'drone',
+    model: 'Amazon 1550',
+    airTimeHours: '2100',
+    base: 'New York',
+    latLong: '40.771956 -73.978531'
+}, {
+    license: 'QRS678',
+    type: 'drone',
+    model: 'Google 3800',
+    airTimeHours: '300',
+    base: 'New York',
+    latLong: '40.779423 -73.969411'
+}, {
+    license: 'AT9900',
+    type: 'car',
+    make: 'Tesla',
+    model: 'Quick Transport',
+    miles: '15600',
+    latLong: '40.773272 -73.968875'
+}, {
+    license: 'AT2000',
+    type: 'car',
+    make: 'Uber',
+    model: 'Auto Taxi Plus',
+    miles: '400',
+    latLong: '40.778878 -73.968435'
+}, {
+    license: 'AT2020',
+    type: 'car',
+    make: 'Uber',
+    model: 'Zip Trip',
+    miles: '12200',
+    latLong: '40.778984 -73.962266'
+}, {
+    license: 'AT4000',
+    type: 'car',
+    make: 'Lyft',
+    model: 'Pick U Up',
+    miles: '400',
+    latLong: '40.774036 -73.967319'
+}];
+
+/***/ }),
+
 /***/ "./src/index.js":
 /*!**********************!*\
   !*** ./src/index.js ***!
@@ -96,126 +162,89 @@
 "use strict";
 
 
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+var _fleetData = __webpack_require__(/*! ./fleet-data.js */ "./src/fleet-data.js");
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+var _fleetDataService = __webpack_require__(/*! ./services/fleet-data-service.js */ "./src/services/fleet-data-service.js");
+
+// //1: CREATE DATA SERVICE CLASS
+// import {Car} from './classes/car.js';
+// import {Drone} from './classes/drone.js';
+var dataService = new _fleetDataService.FleetDataService();
+dataService.loadData(_fleetData.fleet);
+
+console.log(dataService.cars);
+console.log(dataService.drones);
+
+/***/ }),
+
+/***/ "./src/services/fleet-data-service.js":
+/*!********************************************!*\
+  !*** ./src/services/fleet-data-service.js ***!
+  \********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-// // 1: EXTENDING A CLASS
-var Recipe = function Recipe() {
-    _classCallCheck(this, Recipe);
-};
+// import {Car} from '../classes/car.js';
+// import {Drone} from '../classes/drone.js';
 
-var Lasagna = function (_Recipe) {
-    _inherits(Lasagna, _Recipe);
+var FleetDataService = exports.FleetDataService = function () {
+    function FleetDataService() {
+        _classCallCheck(this, FleetDataService);
 
-    function Lasagna() {
-        _classCallCheck(this, Lasagna);
-
-        return _possibleConstructorReturn(this, (Lasagna.__proto__ || Object.getPrototypeOf(Lasagna)).apply(this, arguments));
+        this.cars = [];
+        this.drones = [];
     }
 
-    return Lasagna;
-}(Recipe);
+    _createClass(FleetDataService, [{
+        key: 'loadData',
+        value: function loadData(fleet) {
+            var _iteratorNormalCompletion = true;
+            var _didIteratorError = false;
+            var _iteratorError = undefined;
 
-var Pho = function (_Recipe2) {
-    _inherits(Pho, _Recipe2);
+            try {
+                for (var _iterator = fleet[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                    var data = _step.value;
 
-    function Pho() {
-        _classCallCheck(this, Pho);
+                    switch (data.type) {
+                        case 'car':
+                            this.cars.push(data);
+                            break;
+                        case 'drone':
+                            this.drones.push(data);
+                            break;
+                    }
+                }
+            } catch (err) {
+                _didIteratorError = true;
+                _iteratorError = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion && _iterator.return) {
+                        _iterator.return();
+                    }
+                } finally {
+                    if (_didIteratorError) {
+                        throw _iteratorError;
+                    }
+                }
+            }
+        }
+    }]);
 
-        return _possibleConstructorReturn(this, (Pho.__proto__ || Object.getPrototypeOf(Pho)).apply(this, arguments));
-    }
-
-    return Pho;
-}(Recipe);
-
-var c = new Pho();
-
-console.log(c);
-// console.log(c instanceof Object);
-
-
-// // 2: INHERITING CONSTRUCTORS
-// class Recipe {
-//   constructor(cookTime) {
-//     this.cookTime = cookTime;
-//   }
-// }
-
-// class Lasagna extends Recipe {
-
-// }
-
-// class Pho extends Recipe {
-//   constructor(cookTime) {
-//     super(cookTime)
-//   }
-// }
-
-// let c = new Pho(120);
-
-// console.log(c.cookTime);
-
-
-// // 3: INHERITING PROPERTIES
-// class Recipe {
-//   constructor() {
-//       this.soup = false;
-//   }
-// }
-
-// class Lasagna extends Recipe {
-
-// }
-
-// class Pho extends Recipe {
-//   constructor() {
-//       super();
-//       this.soup = true;
-//   }
-// }
-
-// let c = new Pho();
-
-// console.log(c.soup);
-
-
-// // 4: INHERITING METHODS
-// class Recipes {
-//   start() {
-//       console.log('staring Recipes');
-//   }
-//   static getRegion() {
-//       console.log('My Region');
-//   }
-// }
-
-// class Lasagna extends Recipes {
-//   start() {
-//       super.start();
-//       console.log('staring Lasagna');
-//   }
-//   static getRegion() {
-//       super.getRegion();
-//       console.log('My Other Region');
-//   }
-// }
-
-// let c = new Lasagna();
-// Lasagna.getRegion();
-
-
-// // 5: SEPARATING CLASSES
-// import {Lasagna} from './classes/lasagna.js';
-// import {Pho} from './classes/pho.js';
-
-// let c = new Lasagna();
-// let d = new Pho();
-
-// console.log(c);
-// console.log(d);
+    return FleetDataService;
+}();
 
 /***/ })
 

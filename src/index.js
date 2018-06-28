@@ -1,101 +1,11 @@
-// // 1: EXTENDING A CLASS
-class Recipe {
-    
-}
+// //1: CREATE DATA SERVICE CLASS
+// import {Car} from './classes/car.js';
+// import {Drone} from './classes/drone.js';
+import {fleet} from './fleet-data.js';
+import {FleetDataService} from './services/fleet-data-service.js';
 
-class Lasagna extends Recipe {
-    
-}
+let dataService = new FleetDataService();
+dataService.loadData(fleet);
 
-class Pho extends Recipe {
-    
-}
-
-let c = new Pho();
-
-console.log(c);
-// console.log(c instanceof Object);
-
-
-// // 2: INHERITING CONSTRUCTORS
-// class Recipe {
-//   constructor(cookTime) {
-//     this.cookTime = cookTime;
-//   }
-// }
-
-// class Lasagna extends Recipe {
-    
-// }
-
-// class Pho extends Recipe {
-//   constructor(cookTime) {
-//     super(cookTime)
-//   }
-// }
-
-// let c = new Pho(120);
-
-// console.log(c.cookTime);
-
-
-// // 3: INHERITING PROPERTIES
-// class Recipe {
-//   constructor() {
-//       this.soup = false;
-//   }
-// }
-
-// class Lasagna extends Recipe {
-    
-// }
-
-// class Pho extends Recipe {
-//   constructor() {
-//       super();
-//       this.soup = true;
-//   }
-// }
-
-// let c = new Pho();
-
-// console.log(c.soup);
-
-
-// // 4: INHERITING METHODS
-// class Recipes {
-//   start() {
-//       console.log('staring Recipes');
-//   }
-//   static getRegion() {
-//       console.log('My Region');
-//   }
-// }
-
-// class Lasagna extends Recipes {
-//   start() {
-//       super.start();
-//       console.log('staring Lasagna');
-//   }
-//   static getRegion() {
-//       super.getRegion();
-//       console.log('My Other Region');
-//   }
-// }
-
-// let c = new Lasagna();
-// Lasagna.getRegion();
-
-
-// // 5: SEPARATING CLASSES
-// import {Lasagna} from './classes/lasagna.js';
-// import {Pho} from './classes/pho.js';
-
-// let c = new Lasagna();
-// let d = new Pho();
-
-// console.log(c);
-// console.log(d);
-
-
-
+console.log(dataService.cars);
+console.log(dataService.drones);
