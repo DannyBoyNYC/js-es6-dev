@@ -17,14 +17,6 @@ app.get('/', function(req, res) {
   res.sendFile(__dirname + '/static/index.html');
 });
 
-app.get('/recipes', function(req, res) {
-  res.sendFile(__dirname + '/static/index.html');
-});
-
-app.get('/recipes/:id', function(req, res) {
-  res.sendFile(__dirname + '/static/index.html');
-});
-
 app.get('/api/recipes', recipes.findAll);
 app.get('/api/recipes/:id', recipes.findById);
 app.post('/api/recipes', recipes.add);
@@ -36,5 +28,5 @@ app.get('/api/killall', recipes.killall);
 
 mongoose.connect(mongoUri);
 
-app.listen(3001);
-console.log('Server running at http://localhost:3001/');
+app.listen(3020);
+console.log('Server running at http://localhost:3020/');
