@@ -127,6 +127,47 @@ var Car = exports.Car = function (_Vehicle) {
 
 /***/ }),
 
+/***/ "./src/classes/drone.js":
+/*!******************************!*\
+  !*** ./src/classes/drone.js ***!
+  \******************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.Drone = undefined;
+
+var _vehicle = __webpack_require__(/*! ./vehicle.js */ "./src/classes/vehicle.js");
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Drone = exports.Drone = function (_Vehicle) {
+    _inherits(Drone, _Vehicle);
+
+    function Drone(license, model, latLong) {
+        _classCallCheck(this, Drone);
+
+        var _this = _possibleConstructorReturn(this, (Drone.__proto__ || Object.getPrototypeOf(Drone)).call(this, license, model, latLong));
+
+        _this.airTimeHours = null;
+        _this.base = null;
+        return _this;
+    }
+
+    return Drone;
+}(_vehicle.Vehicle);
+
+/***/ }),
+
 /***/ "./src/classes/vehicle.js":
 /*!********************************!*\
   !*** ./src/classes/vehicle.js ***!
@@ -229,25 +270,32 @@ var fleet = exports.fleet = [{
 "use strict";
 
 
+var _car = __webpack_require__(/*! ./classes/car.js */ "./src/classes/car.js");
+
+var _drone = __webpack_require__(/*! ./classes/drone.js */ "./src/classes/drone.js");
+
 var _fleetData = __webpack_require__(/*! ./fleet-data.js */ "./src/fleet-data.js");
 
 var _fleetDataService = __webpack_require__(/*! ./services/fleet-data-service.js */ "./src/services/fleet-data-service.js");
 
-// //1: CREATE DATA SERVICE CLASS
-// import {Car} from './classes/car.js';
-// import {Drone} from './classes/drone.js';
 var dataService = new _fleetDataService.FleetDataService();
 dataService.loadData(_fleetData.fleet);
+
+//let car = dataService.getCarByLicense('AT9900');
+
+//let cars = dataService.getCarsSortedByLicense();
+
+var cars = dataService.filterCarsByMake('e');
 
 var _iteratorNormalCompletion = true;
 var _didIteratorError = false;
 var _iteratorError = undefined;
 
 try {
-    for (var _iterator = dataService.errors[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-        var e = _step.value;
+    for (var _iterator = cars[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+        var car = _step.value;
 
-        console.log(e.message);
+        console.log(car.make);
     }
 } catch (err) {
     _didIteratorError = true;
@@ -307,10 +355,10 @@ Object.defineProperty(exports, "__esModule", {
 exports.FleetDataService = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-// import {Drone} from '../classes/drone.js';
-
 
 var _car = __webpack_require__(/*! ../classes/car.js */ "./src/classes/car.js");
+
+var _drone = __webpack_require__(/*! ../classes/drone.js */ "./src/classes/drone.js");
 
 var _dataError = __webpack_require__(/*! ./data-error.js */ "./src/services/data-error.js");
 
@@ -326,6 +374,29 @@ var FleetDataService = exports.FleetDataService = function () {
     }
 
     _createClass(FleetDataService, [{
+        key: 'getCarByLicense',
+        value: function getCarByLicense(license) {
+            return this.cars.find(function (car) {
+                return car.license === license;
+            });
+        }
+    }, {
+        key: 'getCarsSortedByLicense',
+        value: function getCarsSortedByLicense() {
+            return this.cars.sort(function (car1, car2) {
+                if (car1.license < car2.license) return -1;
+                if (car1.license > car2.license) return 1;
+                return 0;
+            });
+        }
+    }, {
+        key: 'filterCarsByMake',
+        value: function filterCarsByMake(filter) {
+            return this.cars.filter(function (car) {
+                return car.make.indexOf(filter) >= 0;
+            });
+        }
+    }, {
         key: 'loadData',
         value: function loadData(fleet) {
             var _iteratorNormalCompletion = true;
