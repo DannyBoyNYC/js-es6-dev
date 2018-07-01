@@ -131,11 +131,11 @@ var Pho = function (_Recipe2) {
     return Pho;
 }(Recipe);
 
-var c = new Pho();
+var c = new Lasagna();
+var d = new Pho();
 
 console.log(c);
-// console.log(c instanceof Object);
-
+console.log(d);
 
 // // 2: INHERITING CONSTRUCTORS
 // class Recipe {
@@ -178,14 +178,13 @@ console.log(c);
 // }
 
 // let c = new Pho();
-
 // console.log(c.soup);
 
 
 // // 4: INHERITING METHODS
 // class Recipes {
 //   start() {
-//       console.log('staring Recipes');
+//       console.log('starting Recipes');
 //   }
 //   static getRegion() {
 //       console.log('My Region');
@@ -195,16 +194,16 @@ console.log(c);
 // class Lasagna extends Recipes {
 //   start() {
 //       super.start();
-//       console.log('staring Lasagna');
+//       console.log('starting Lasagna');
 //   }
 //   static getRegion() {
 //       super.getRegion();
-//       console.log('My Other Region');
+//       console.log('My other Region');
 //   }
 // }
 
 // let c = new Lasagna();
-// Lasagna.getRegion();
+// // Lasagna.getRegion();
 
 
 // // 5: SEPARATING CLASSES

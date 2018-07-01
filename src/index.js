@@ -11,10 +11,11 @@ class Pho extends Recipe {
     
 }
 
-let c = new Pho();
+let c = new Lasagna();
+let d = new Pho();
 
 console.log(c);
-// console.log(c instanceof Object);
+console.log(d);
 
 
 // // 2: INHERITING CONSTRUCTORS
@@ -58,14 +59,13 @@ console.log(c);
 // }
 
 // let c = new Pho();
-
 // console.log(c.soup);
 
 
 // // 4: INHERITING METHODS
 // class Recipes {
 //   start() {
-//       console.log('staring Recipes');
+//       console.log('starting Recipes');
 //   }
 //   static getRegion() {
 //       console.log('My Region');
@@ -75,16 +75,16 @@ console.log(c);
 // class Lasagna extends Recipes {
 //   start() {
 //       super.start();
-//       console.log('staring Lasagna');
+//       console.log('starting Lasagna');
 //   }
 //   static getRegion() {
 //       super.getRegion();
-//       console.log('My Other Region');
+//       console.log('My other Region');
 //   }
 // }
 
 // let c = new Lasagna();
-// Lasagna.getRegion();
+// // Lasagna.getRegion();
 
 
 // // 5: SEPARATING CLASSES
