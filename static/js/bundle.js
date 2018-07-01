@@ -98,7 +98,7 @@
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-// 1: CLASSES
+// // 1: CLASSES
 var Recipe = function Recipe() {
   _classCallCheck(this, Recipe);
 };
@@ -107,7 +107,7 @@ var recipe = new Recipe();
 
 console.log(recipe instanceof Recipe);
 
-// 2: INSTANCES
+// // 2: INSTANCES
 // class Recipe {
 //   constructor(id, name) {
 //       this.id = id;
@@ -119,21 +119,21 @@ console.log(recipe instanceof Recipe);
 
 // console.log('recipe: ' + recipe['id'] + ' ' + recipe['name']);
 
-// 3: STATIC PROPERTIES
+// // 3: STATIC PROPERTIES
 // class Recipe {
 //   constructor(id, name) {
 //       this.id = id;
 //       this.name = name;
 //   }
 // }
-// Recipe.maxHeight = 2000;
+// Recipe.locator = 2000;
 
 // let recipe = new Recipe('123', 'Lasagna');
 // let recipe2 = new Recipe('456', 'Toast');
 
-// console.log(recipe.maxHeight);
+// console.log(Recipe.locator);
 
-// 4: METHODS
+// // 4: METHODS
 // class Recipe {
 //   constructor(id, name) {
 //       this.id = id;
@@ -151,7 +151,7 @@ console.log(recipe instanceof Recipe);
 // recipe.cook();
 // recipe2.cook();
 
-// 5: STATIC METHODS
+// // 5: STATIC METHODS
 // class Recipe {
 //   constructor(id, name) {
 //       this.id = id;
@@ -159,7 +159,7 @@ console.log(recipe instanceof Recipe);
 //   }
 
 //   static getCompany() {
-//       console.log('hellooo');
+//       console.log('hello from getCompany');
 //   }
 
 //   cook() {
@@ -172,25 +172,25 @@ console.log(recipe instanceof Recipe);
 
 // Recipe.getCompany();
 
-// 6: GETTERS AND SETTERS
+// // 6: GETTERS AND SETTERS
 // class Recipe {
 //   constructor(id) {
-//       this._id = id;
+//     this._id = id;
 //   }
 
 //   get id() {
-//       console.log('in id getter');
-//       return this._id + ' TEMPORARY';
+//     return this._id + ' ADDED';
 //   }
 
-//   set id(value) {
-//       this._id = value;
-//   }
+//   // set id(value) {
+//   //   this._id = value;
+//   // }
 // }
 
-// let recipe = new Recipe('Toast');
-// recipe.id = '456';
-// console.log('recipe id: ' + recipe.id);
+// let recipe = new Recipe();
+// // recipe.id = '456';
+// console.log(recipe)
+// // console.log(recipe.id)
 
 /***/ })
 
