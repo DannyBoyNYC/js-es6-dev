@@ -97,7 +97,7 @@
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 exports.Car = undefined;
 
@@ -110,19 +110,19 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var Car = exports.Car = function (_Vehicle) {
-    _inherits(Car, _Vehicle);
+  _inherits(Car, _Vehicle);
 
-    function Car(license, model, latLong) {
-        _classCallCheck(this, Car);
+  function Car(license, model, latLong) {
+    _classCallCheck(this, Car);
 
-        var _this = _possibleConstructorReturn(this, (Car.__proto__ || Object.getPrototypeOf(Car)).call(this, license, model, latLong));
+    var _this = _possibleConstructorReturn(this, (Car.__proto__ || Object.getPrototypeOf(Car)).call(this, license, model, latLong));
 
-        _this.miles = null;
-        _this.make = null;
-        return _this;
-    }
+    _this.miles = null;
+    _this.make = null;
+    return _this;
+  }
 
-    return Car;
+  return Car;
 }(_vehicle.Vehicle);
 
 /***/ }),
@@ -138,7 +138,7 @@ var Car = exports.Car = function (_Vehicle) {
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 exports.Drone = undefined;
 
@@ -151,19 +151,19 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var Drone = exports.Drone = function (_Vehicle) {
-    _inherits(Drone, _Vehicle);
+  _inherits(Drone, _Vehicle);
 
-    function Drone(license, model, latLong) {
-        _classCallCheck(this, Drone);
+  function Drone(license, model, latLong) {
+    _classCallCheck(this, Drone);
 
-        var _this = _possibleConstructorReturn(this, (Drone.__proto__ || Object.getPrototypeOf(Drone)).call(this, license, model, latLong));
+    var _this = _possibleConstructorReturn(this, (Drone.__proto__ || Object.getPrototypeOf(Drone)).call(this, license, model, latLong));
 
-        _this.airTimeHours = null;
-        _this.base = null;
-        return _this;
-    }
+    _this.airTimeHours = null;
+    _this.base = null;
+    return _this;
+  }
 
-    return Drone;
+  return Drone;
 }(_vehicle.Vehicle);
 
 /***/ }),
@@ -300,7 +300,7 @@ console.log(dataService.drones);
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 exports.FleetDataService = undefined;
 
@@ -338,60 +338,60 @@ var _drone = __webpack_require__(/*! ../classes/drone.js */ "./src/classes/drone
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var FleetDataService = exports.FleetDataService = function () {
-    function FleetDataService() {
-        _classCallCheck(this, FleetDataService);
+  function FleetDataService() {
+    _classCallCheck(this, FleetDataService);
 
-        this.cars = [];
-        this.drones = [];
+    this.cars = [];
+    this.drones = [];
+  }
+
+  _createClass(FleetDataService, [{
+    key: 'loadData',
+    value: function loadData(fleet) {
+      var _iteratorNormalCompletion = true;
+      var _didIteratorError = false;
+      var _iteratorError = undefined;
+
+      try {
+        for (var _iterator = fleet[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+          var data = _step.value;
+
+          switch (data.type) {
+            case 'car':
+              var car = this.loadCar(data);
+              this.cars.push(car);
+              break;
+            case 'drone':
+              this.drones.push(data);
+              break;
+          }
+        }
+      } catch (err) {
+        _didIteratorError = true;
+        _iteratorError = err;
+      } finally {
+        try {
+          if (!_iteratorNormalCompletion && _iterator.return) {
+            _iterator.return();
+          }
+        } finally {
+          if (_didIteratorError) {
+            throw _iteratorError;
+          }
+        }
+      }
     }
+  }, {
+    key: 'loadCar',
+    value: function loadCar(car) {
+      var c = new _car.Car(car.license, car.model, car.latLong);
+      c.miles = car.miles;
+      c.make = car.make;
+      return c;
+    }
+  }]);
 
-    _createClass(FleetDataService, [{
-        key: 'loadData',
-        value: function loadData(fleet) {
-            var _iteratorNormalCompletion = true;
-            var _didIteratorError = false;
-            var _iteratorError = undefined;
-
-            try {
-                for (var _iterator = fleet[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-                    var data = _step.value;
-
-                    switch (data.type) {
-                        case 'car':
-                            var car = this.loadCar(data);
-                            this.cars.push(car);
-                            break;
-                        case 'drone':
-                            this.drones.push(data);
-                            break;
-                    }
-                }
-            } catch (err) {
-                _didIteratorError = true;
-                _iteratorError = err;
-            } finally {
-                try {
-                    if (!_iteratorNormalCompletion && _iterator.return) {
-                        _iterator.return();
-                    }
-                } finally {
-                    if (_didIteratorError) {
-                        throw _iteratorError;
-                    }
-                }
-            }
-        }
-    }, {
-        key: 'loadCar',
-        value: function loadCar(car) {
-            var c = new _car.Car(car.license, car.model, car.latLong);
-            c.miles = car.miles;
-            c.make = car.make;
-            return c;
-        }
-    }]);
-
-    return FleetDataService;
+  return FleetDataService;
 }();
 
 /***/ })
