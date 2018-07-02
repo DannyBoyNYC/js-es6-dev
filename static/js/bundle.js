@@ -270,19 +270,14 @@ var fleet = exports.fleet = [{
 "use strict";
 
 
-var _list = __webpack_require__(/*! ./ui/list.js */ "./src/ui/list.js");
-
 var _fleetData = __webpack_require__(/*! ./fleet-data.js */ "./src/fleet-data.js");
 
 var _fleetDataService = __webpack_require__(/*! ./services/fleet-data-service.js */ "./src/services/fleet-data-service.js");
 
-// //1: CREATE DATA SERVICE CLASS
-// import {Car} from './classes/car.js';
-// import {Drone} from './classes/drone.js';
+// //1: DATA SERVICE CLASS
+
 var dataService = new _fleetDataService.FleetDataService();
 dataService.loadData(_fleetData.fleet);
-
-createList(dataService.cars);
 
 // console.log(dataService.cars);
 // console.log(dataService.drones);
@@ -400,41 +395,6 @@ var FleetDataService = exports.FleetDataService = function () {
   }]);
 
   return FleetDataService;
-}();
-
-/***/ }),
-
-/***/ "./src/ui/list.js":
-/*!************************!*\
-  !*** ./src/ui/list.js ***!
-  \************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-var List = exports.List = function () {
-  function List() {
-    _classCallCheck(this, List);
-  }
-
-  _createClass(List, [{
-    key: "createList",
-    value: function createList(data) {
-      return "<p>" + data + "</p>";
-    }
-  }]);
-
-  return List;
 }();
 
 /***/ })

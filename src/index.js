@@ -1,17 +1,10 @@
-// //1: CREATE DATA SERVICE CLASS
-// import {Car} from './classes/car.js';
-// import {Drone} from './classes/drone.js';
-import {List} from './ui/list.js';
-
+// //1: DATA SERVICE CLASS
 
 import {fleet} from './fleet-data.js';
-import { FleetDataService } from './services/fleet-data-service.js';
-import { } from './ui/list.js';
+import {FleetDataService} from './services/fleet-data-service.js';
 
 let dataService = new FleetDataService();
 dataService.loadData(fleet);
-
-createList(dataService.cars)
 
 
 // console.log(dataService.cars);
