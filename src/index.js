@@ -5,6 +5,15 @@ import $ from 'jquery';
 import {fleet} from './fleet-data.js';
 import { FleetDataService } from './services/fleet-data-service.js';
 
+// Daniel
+import { List } from './ui/list.js';
+let ui = new List();
+
+let temp = ui.createList(dataService.cars)
+console.log(temp)
+document.querySelector('.list').innerHTML = temp;
+//end Daniel
+
 import { Button } from './ui/button.js';
 import {Image} from './ui/image.js';
 

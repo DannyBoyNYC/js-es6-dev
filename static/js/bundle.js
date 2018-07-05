@@ -10683,11 +10683,23 @@ var _fleetData = __webpack_require__(/*! ./fleet-data.js */ "./src/fleet-data.js
 
 var _fleetDataService = __webpack_require__(/*! ./services/fleet-data-service.js */ "./src/services/fleet-data-service.js");
 
+var _list = __webpack_require__(/*! ./ui/list.js */ "./src/ui/list.js");
+
 var _button = __webpack_require__(/*! ./ui/button.js */ "./src/ui/button.js");
 
 var _image = __webpack_require__(/*! ./ui/image.js */ "./src/ui/image.js");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var ui = new _list.List();
+
+// Daniel
+
+
+var temp = ui.createList(dataService.cars);
+console.log(temp);
+document.querySelector('.list').innerHTML = temp;
+//end Daniel
 
 var b = new _button.Button('Click Me');
 b.appendToElement((0, _jquery2.default)('body'));
@@ -11068,6 +11080,17 @@ var Image = exports.Image = function (_BaseElement) {
 
     return Image;
 }(_baseElement.BaseElement);
+
+/***/ }),
+
+/***/ "./src/ui/list.js":
+/*!************************!*\
+  !*** ./src/ui/list.js ***!
+  \************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nError: ENOENT: no such file or directory, open '/Users/danieldeverell/Desktop/javascript-es6-dev/src/ui/list.js'");
 
 /***/ })
 
