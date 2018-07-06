@@ -4,6 +4,7 @@ export class List extends BaseElement {
 
   constructor(title) {
     super();
+    this.el = 'list';
     this.title = title;
     this.vehicles = [];
   }

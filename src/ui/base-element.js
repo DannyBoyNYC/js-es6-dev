@@ -4,6 +4,7 @@ export class BaseElement {
     
     constructor() {
         this.element = null;  // jQuery object
+        this.el = null;
     }
     
     appendToElement(el) {
@@ -21,12 +22,19 @@ export class BaseElement {
         throw 'Please override getElementString() in BaseElement';
     }
 
-    // Daniel
-    setHtml(){
-        document.querySelector('list').innerHTML
-    }
-    
     // enableJS() {
         // componentHandler.upgradeElement(this.element[0]);
     // }
+
+    // Daniel
+    appendEl(){
+        this.createEl();
+        document.querySelector('list').innerHTML
+    }
+
+    createEl(){
+        let e = this.getElementString();
+        this.el = e;
+    }
+    
 }
