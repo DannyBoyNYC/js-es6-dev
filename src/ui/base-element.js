@@ -9,7 +9,7 @@ export class BaseElement {
     appendToElement(el) {
         this.createElement();
         el.append(this.element);
-        this.enableJS();
+        // this.enableJS();
     }
     
     createElement() {
@@ -21,7 +21,7 @@ export class BaseElement {
         throw 'Please override getElementString() in BaseElement';
     }
     
-    enableJS() {
-        componentHandler.upgradeElement(this.element[0]);
-    }
+    // enableJS() {
+    //     componentHandler.upgradeElement(this.element[0]);
+    // }
 }

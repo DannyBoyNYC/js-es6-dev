@@ -10667,10 +10667,6 @@ var fleet = exports.fleet = [{
 "use strict";
 
 
-var _car = __webpack_require__(/*! ./classes/car.js */ "./src/classes/car.js");
-
-var _drone = __webpack_require__(/*! ./classes/drone.js */ "./src/classes/drone.js");
-
 var _materialDesignLite = __webpack_require__(/*! material-design-lite */ "./node_modules/material-design-lite/dist/material.min.js");
 
 var _materialDesignLite2 = _interopRequireDefault(_materialDesignLite);
@@ -10689,38 +10685,44 @@ var _button = __webpack_require__(/*! ./ui/button.js */ "./src/ui/button.js");
 
 var _image = __webpack_require__(/*! ./ui/image.js */ "./src/ui/image.js");
 
+var _titleBar = __webpack_require__(/*! ./ui/title-bar.js */ "./src/ui/title-bar.js");
+
+var _dataTable = __webpack_require__(/*! ./ui/data-table.js */ "./src/ui/data-table.js");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var ui = new _list.List();
+// import {Car} from './classes/car.js';
+// import { Drone } from './classes/drone.js';
+var dataService = new _fleetDataService.FleetDataService();
+dataService.loadData(_fleetData.fleet);
 
 // Daniel
 
-
-var temp = ui.createList(dataService.cars);
-console.log(temp);
-document.querySelector('.list').innerHTML = temp;
+var l = new _list.List('List Title');
+l.addVehicle('Blah');
+l.addVehicle('Blahdee');
+l.addVehicle('Blah');
+document.querySelector('.list').innerHTML = l.getElementString();
+console.log(l);
 //end Daniel
 
 var b = new _button.Button('Click Me');
 b.appendToElement((0, _jquery2.default)('body'));
 
-var i = new _image.Image('../img/drone.jpg');
+var i = new _image.Image('/img/drone.jpg');
 i.appendToElement((0, _jquery2.default)('body'));
 
-// let c = new Button('whoa');
-// const elone = document.querySelector('body');
+var tb = new _titleBar.TitleBar('My Application');
+tb.addLink('hell', '');
+tb.addLink('heaven', '');
+tb.addLink('home', '');
+tb.appendToElement((0, _jquery2.default)('body'));
+console.log(tb);
 
-// var replaceJq = new Object()
-// var replaceJqArr = new Array
-
-// replaceJq[0] = elone;
-// replaceJqArr.push(elone);
-
-// c.appendToElement(replaceJqArr[0]);
-
-// console.log($('body')[0]);
-// console.log(replaceJqArr[0])
-
+var headers = "License Make Model Miles".split(' ');
+var dt = new _dataTable.DataTable(headers, dataService.cars);
+dt.appendToElement((0, _jquery2.default)('body'));
+console.log(dt);
 
 // let dataService = new FleetDataService();
 // dataService.loadData(fleet);
@@ -10960,7 +10962,7 @@ var BaseElement = exports.BaseElement = function () {
         value: function appendToElement(el) {
             this.createElement();
             el.append(this.element);
-            this.enableJS();
+            // this.enableJS();
         }
     }, {
         key: 'createElement',
@@ -10973,11 +10975,11 @@ var BaseElement = exports.BaseElement = function () {
         value: function getElementString() {
             throw 'Please override getElementString() in BaseElement';
         }
-    }, {
-        key: 'enableJS',
-        value: function enableJS() {
-            componentHandler.upgradeElement(this.element[0]);
-        }
+
+        // enableJS() {
+        //     componentHandler.upgradeElement(this.element[0]);
+        // }
+
     }]);
 
     return BaseElement;
@@ -11030,6 +11032,137 @@ var Button = exports.Button = function (_BaseElement) {
     }]);
 
     return Button;
+}(_baseElement.BaseElement);
+
+/***/ }),
+
+/***/ "./src/ui/data-table.js":
+/*!******************************!*\
+  !*** ./src/ui/data-table.js ***!
+  \******************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.DataTable = undefined;
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _baseElement = __webpack_require__(/*! ./base-element.js */ "./src/ui/base-element.js");
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var DataTable = exports.DataTable = function (_BaseElement) {
+    _inherits(DataTable, _BaseElement);
+
+    function DataTable(headers, data) {
+        _classCallCheck(this, DataTable);
+
+        var _this = _possibleConstructorReturn(this, (DataTable.__proto__ || Object.getPrototypeOf(DataTable)).call(this));
+
+        _this.headers = headers;
+        _this.data = data;
+        return _this;
+    }
+
+    _createClass(DataTable, [{
+        key: 'getElementString',
+        value: function getElementString() {
+
+            var thTags = '';
+            var _iteratorNormalCompletion = true;
+            var _didIteratorError = false;
+            var _iteratorError = undefined;
+
+            try {
+                for (var _iterator = this.headers[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                    var h = _step.value;
+
+                    thTags += '<th class="mdl-data-table__cell--non-numeric">' + h + '</th>\n';
+                }
+            } catch (err) {
+                _didIteratorError = true;
+                _iteratorError = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion && _iterator.return) {
+                        _iterator.return();
+                    }
+                } finally {
+                    if (_didIteratorError) {
+                        throw _iteratorError;
+                    }
+                }
+            }
+
+            var trTags = '';
+            var _iteratorNormalCompletion2 = true;
+            var _didIteratorError2 = false;
+            var _iteratorError2 = undefined;
+
+            try {
+                for (var _iterator2 = this.data[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+                    var row = _step2.value;
+
+                    trTags += '<tr>';
+                    var tdTags = '';
+                    var _iteratorNormalCompletion3 = true;
+                    var _didIteratorError3 = false;
+                    var _iteratorError3 = undefined;
+
+                    try {
+                        for (var _iterator3 = this.headers[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+                            var property = _step3.value;
+
+                            var field = row[property.toLowerCase()];
+                            trTags += '<td class="mdl-data-table__cell--non-numeric">\n                             ' + field + '\n                           </td>\n                          ';
+                        }
+                    } catch (err) {
+                        _didIteratorError3 = true;
+                        _iteratorError3 = err;
+                    } finally {
+                        try {
+                            if (!_iteratorNormalCompletion3 && _iterator3.return) {
+                                _iterator3.return();
+                            }
+                        } finally {
+                            if (_didIteratorError3) {
+                                throw _iteratorError3;
+                            }
+                        }
+                    }
+
+                    trTags += '</tr>';
+                }
+            } catch (err) {
+                _didIteratorError2 = true;
+                _iteratorError2 = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion2 && _iterator2.return) {
+                        _iterator2.return();
+                    }
+                } finally {
+                    if (_didIteratorError2) {
+                        throw _iteratorError2;
+                    }
+                }
+            }
+
+            return '\n            <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">\n                <thead>\n                    <tr>\n                    ' + thTags + '\n                    </tr>\n                </thead>\n                <tbody>\n                    ' + trTags + '\n                </tbody>\n            </table>\n\n        ';
+        }
+    }]);
+
+    return DataTable;
 }(_baseElement.BaseElement);
 
 /***/ }),
@@ -11088,9 +11221,167 @@ var Image = exports.Image = function (_BaseElement) {
   !*** ./src/ui/list.js ***!
   \************************/
 /*! no static exports found */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nError: ENOENT: no such file or directory, open '/Users/danieldeverell/Desktop/javascript-es6-dev/src/ui/list.js'");
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.List = undefined;
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _baseElement = __webpack_require__(/*! ./base-element.js */ "./src/ui/base-element.js");
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var List = exports.List = function (_BaseElement) {
+  _inherits(List, _BaseElement);
+
+  function List(title) {
+    _classCallCheck(this, List);
+
+    var _this = _possibleConstructorReturn(this, (List.__proto__ || Object.getPrototypeOf(List)).call(this));
+
+    _this.title = title;
+    _this.vehicles = [];
+    return _this;
+  }
+
+  _createClass(List, [{
+    key: 'addVehicle',
+    value: function addVehicle(name) {
+      this.vehicles.push({
+        name: name
+      });
+    }
+  }, {
+    key: 'getElementString',
+    value: function getElementString() {
+
+      var markup = '';
+
+      var _iteratorNormalCompletion = true;
+      var _didIteratorError = false;
+      var _iteratorError = undefined;
+
+      try {
+        for (var _iterator = this.vehicles[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+          var vehicle = _step.value;
+
+          markup += '<li class="woo">' + vehicle.name + '</li>';
+        }
+      } catch (err) {
+        _didIteratorError = true;
+        _iteratorError = err;
+      } finally {
+        try {
+          if (!_iteratorNormalCompletion && _iterator.return) {
+            _iterator.return();
+          }
+        } finally {
+          if (_didIteratorError) {
+            throw _iteratorError;
+          }
+        }
+      }
+
+      return '\n    <div>\n      <h2>' + this.title + '</h2>\n      <ul>\n        ' + markup + '\n      </ul>\n    </div>\n    ';
+    }
+  }]);
+
+  return List;
+}(_baseElement.BaseElement);
+
+/***/ }),
+
+/***/ "./src/ui/title-bar.js":
+/*!*****************************!*\
+  !*** ./src/ui/title-bar.js ***!
+  \*****************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.TitleBar = undefined;
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _baseElement = __webpack_require__(/*! ./base-element.js */ "./src/ui/base-element.js");
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var TitleBar = exports.TitleBar = function (_BaseElement) {
+    _inherits(TitleBar, _BaseElement);
+
+    function TitleBar(title) {
+        _classCallCheck(this, TitleBar);
+
+        var _this = _possibleConstructorReturn(this, (TitleBar.__proto__ || Object.getPrototypeOf(TitleBar)).call(this));
+
+        _this.title = title;
+        _this.links = [];
+        return _this;
+    }
+
+    _createClass(TitleBar, [{
+        key: 'addLink',
+        value: function addLink(title, href) {
+            this.links.push({
+                title: title,
+                href: href
+            });
+        }
+    }, {
+        key: 'getElementString',
+        value: function getElementString() {
+            var links = '';
+            var _iteratorNormalCompletion = true;
+            var _didIteratorError = false;
+            var _iteratorError = undefined;
+
+            try {
+                for (var _iterator = this.links[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                    var link = _step.value;
+
+                    links += '<a class="mdl-navigation__link">\n                        ' + link.title + '\n                      </a>\n';
+                }
+            } catch (err) {
+                _didIteratorError = true;
+                _iteratorError = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion && _iterator.return) {
+                        _iterator.return();
+                    }
+                } finally {
+                    if (_didIteratorError) {
+                        throw _iteratorError;
+                    }
+                }
+            }
+
+            return '\n            <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">\n                <header class="mdl-layout__header">\n                    <div class="mdl-layout__header-row">\n                    <!-- Title -->\n                    <span class="mdl-layout-title">' + this.title + '</span>\n                    <!-- Add spacer, to align navigation to the right -->\n                    <div class="mdl-layout-spacer"></div>\n                    <!-- Navigation. We hide it in small screens. -->\n                    <nav class="mdl-navigation mdl-layout--large-screen-only">\n                        ' + links + '\n                    </nav>\n                    </div>\n                </header>\n                <div class="mdl-layout__drawer">\n                    <span class="mdl-layout-title">' + this.title + '</span>\n                    <nav class="mdl-navigation">\n                        ' + links + '\n                    </nav>\n                </div>\n                <main class="mdl-layout__content">\n                    <div class="page-content"><!-- Your content goes here --></div>\n                </main>\n                </div>\n        ';
+        }
+    }]);
+
+    return TitleBar;
+}(_baseElement.BaseElement);
 
 /***/ })
 

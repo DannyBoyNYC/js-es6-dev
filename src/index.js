@@ -1,41 +1,46 @@
-import {Car} from './classes/car.js';
-import { Drone } from './classes/drone.js';
+// import {Car} from './classes/car.js';
+// import { Drone } from './classes/drone.js';
 import mdl from 'material-design-lite';
 import $ from 'jquery';
 import {fleet} from './fleet-data.js';
 import { FleetDataService } from './services/fleet-data-service.js';
 
+
+let dataService = new FleetDataService();
+dataService.loadData(fleet);
+
 // Daniel
 import { List } from './ui/list.js';
-let ui = new List();
-
-let temp = ui.createList(dataService.cars)
-console.log(temp)
-document.querySelector('.list').innerHTML = temp;
+let l = new List('List Title');
+l.addVehicle('Blah');
+l.addVehicle('Blahdee');
+l.addVehicle('Blah');
+document.querySelector('.list').innerHTML = l.getElementString();
+console.log(l)
 //end Daniel
 
 import { Button } from './ui/button.js';
-import {Image} from './ui/image.js';
+import { Image } from './ui/image.js';
+import { TitleBar } from './ui/title-bar.js';
+import { DataTable } from './ui/data-table.js';
 
 let b = new Button('Click Me');
 b.appendToElement($('body'));
 
-let i = new Image('../img/drone.jpg');
+let i = new Image('/img/drone.jpg');
 i.appendToElement($('body'));
 
-// let c = new Button('whoa');
-// const elone = document.querySelector('body');
+let tb = new TitleBar('My Application');
+tb.addLink('hell','')
+tb.addLink('heaven','')
+tb.addLink('home','')
+tb.appendToElement($('body'));
+console.log(tb)
 
-// var replaceJq = new Object()
-// var replaceJqArr = new Array
-
-// replaceJq[0] = elone;
-// replaceJqArr.push(elone);
-
-// c.appendToElement(replaceJqArr[0]);
-
-// console.log($('body')[0]);
-// console.log(replaceJqArr[0])
+let headers = "License Make Model Miles".split(' ');
+let dt = new DataTable(headers, dataService.cars);
+dt.appendToElement($('body'));
+console.log(dt)
 
 
 // let dataService = new FleetDataService();
