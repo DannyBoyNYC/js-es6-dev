@@ -17,14 +17,13 @@ export class List extends BaseElement {
   getElementString() {
 
     let markup = '';
-
     for (let vehicle of this.vehicles) {
       markup += `<li class="woo">${vehicle.name}</li>`;
     }
 
     return `
     <div>
-      <h2>${this.title}</h2>
+      <h3>${this.title}</h3>
       <ul>
         ${markup}
       </ul>

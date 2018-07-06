@@ -20,8 +20,13 @@ export class BaseElement {
     getElementString() {
         throw 'Please override getElementString() in BaseElement';
     }
+
+    // Daniel
+    setHtml(){
+        document.querySelector('list').innerHTML
+    }
     
     // enableJS() {
-    //     componentHandler.upgradeElement(this.element[0]);
+        // componentHandler.upgradeElement(this.element[0]);
     // }
 }

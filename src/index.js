@@ -15,7 +15,7 @@ let l = new List('List Title');
 l.addVehicle('Blah');
 l.addVehicle('Blahdee');
 l.addVehicle('Blah');
-document.querySelector('.list').innerHTML = l.getElementString();
+document.querySelector('list').innerHTML = l.getElementString();
 console.log(l)
 //end Daniel
 
@@ -35,12 +35,13 @@ tb.addLink('hell','')
 tb.addLink('heaven','')
 tb.addLink('home','')
 tb.appendToElement($('body'));
-console.log(tb)
+// console.log(tb)
 
 let headers = "License Make Model Miles".split(' ');
 let dt = new DataTable(headers, dataService.cars);
 dt.appendToElement($('body'));
 console.log(dt)
+console.log(dataService.cars)
 
 
 // let dataService = new FleetDataService();

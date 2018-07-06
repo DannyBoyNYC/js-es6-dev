@@ -10702,7 +10702,7 @@ var l = new _list.List('List Title');
 l.addVehicle('Blah');
 l.addVehicle('Blahdee');
 l.addVehicle('Blah');
-document.querySelector('.list').innerHTML = l.getElementString();
+document.querySelector('list').innerHTML = l.getElementString();
 console.log(l);
 //end Daniel
 
@@ -10717,12 +10717,13 @@ tb.addLink('hell', '');
 tb.addLink('heaven', '');
 tb.addLink('home', '');
 tb.appendToElement((0, _jquery2.default)('body'));
-console.log(tb);
+// console.log(tb)
 
 var headers = "License Make Model Miles".split(' ');
 var dt = new _dataTable.DataTable(headers, dataService.cars);
 dt.appendToElement((0, _jquery2.default)('body'));
 console.log(dt);
+console.log(dataService.cars);
 
 // let dataService = new FleetDataService();
 // dataService.loadData(fleet);
@@ -10976,8 +10977,16 @@ var BaseElement = exports.BaseElement = function () {
             throw 'Please override getElementString() in BaseElement';
         }
 
+        // Daniel
+
+    }, {
+        key: 'setHtml',
+        value: function setHtml() {
+            document.querySelector('list').innerHTML;
+        }
+
         // enableJS() {
-        //     componentHandler.upgradeElement(this.element[0]);
+        // componentHandler.upgradeElement(this.element[0]);
         // }
 
     }]);
@@ -11266,7 +11275,6 @@ var List = exports.List = function (_BaseElement) {
     value: function getElementString() {
 
       var markup = '';
-
       var _iteratorNormalCompletion = true;
       var _didIteratorError = false;
       var _iteratorError = undefined;
@@ -11292,7 +11300,7 @@ var List = exports.List = function (_BaseElement) {
         }
       }
 
-      return '\n    <div>\n      <h2>' + this.title + '</h2>\n      <ul>\n        ' + markup + '\n      </ul>\n    </div>\n    ';
+      return '\n    <div>\n      <h3>' + this.title + '</h3>\n      <ul>\n        ' + markup + '\n      </ul>\n    </div>\n    ';
     }
   }]);
 
