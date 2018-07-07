@@ -1,7 +1,9 @@
 import $ from 'jquery';
 import {fleet} from './fleet-data.js';
 import { FleetDataService } from './services/fleet-data-service.js';
-import {ApplicationBase} from './framework/application-base.js';
+import { ApplicationBase } from './framework/application-base.js';
+import { HomePage } from './home-page.js';
+import {CarsPage} from './cars-page.js';
 
 export class App extends ApplicationBase {
 
@@ -9,11 +11,13 @@ export class App extends ApplicationBase {
     super('Fleet Manager');
     this.dataService = new FleetDataService();
     this.dataService.loadData(fleet);
-  }
-}
 
-// let dataService = new FleetDataService();
-// dataService.loadData(fleet);
+    this.addRoute('Home', new HomePage(), true);
+    this.addRoute('Cars', new CarsPage());
+    this.addRoute('Drones', null);
+  }
+  
+}
 
 // Daniel
 import { List } from './ui/list.js';
@@ -21,8 +25,7 @@ let l = new List('List Title');
 l.addVehicle('Blah');
 l.addVehicle('Blahdee');
 l.addVehicle('Blah');
-document.querySelector(l.el).innerHTML = l.getElementString();
-console.log(l)
+l.appendEl(l.elem);
 //end Daniel
 
 export let application = new App();

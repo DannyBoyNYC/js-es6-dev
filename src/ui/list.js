@@ -4,7 +4,7 @@ export class List extends BaseElement {
 
   constructor(title) {
     super();
-    this.el = 'list';
+    this.elem = 'list';
     this.title = title;
     this.vehicles = [];
   }
@@ -30,5 +30,5 @@ export class List extends BaseElement {
       </ul>
     </div>
     `
-  } 
+  }
 }
