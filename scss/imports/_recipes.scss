@@ -4,7 +4,7 @@
   margin: 0 1rem;
   ul {
     list-style: none;
-    padding: 0;
+    padding: 0.25rem;
   }
   li {
     display: flex;
@@ -33,7 +33,6 @@ h1 {
   font-family: lobster;
   color: #666;
 }
-
 
 ul li:nth-child(odd) {
   background: #bada55;

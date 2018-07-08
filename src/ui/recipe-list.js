@@ -1,16 +1,16 @@
 import { BaseElement } from './base-element.js';
 
-export class List extends BaseElement {
+export class RecipeList extends BaseElement {
 
   constructor(title) {
     super();
     this.elem = 'list';
     this.title = title;
-    this.vehicles = [];
+    this.recipes = [];
   }
   
-  addVehicle(name) {
-    this.vehicles.push({
+  addRecipe(name) {
+    this.recipes.push({
         name
     });
   }
@@ -18,13 +18,13 @@ export class List extends BaseElement {
   getElementString() {
 
     let markup = '';
-    for (let vehicle of this.vehicles) {
-      markup += `<li class="woo">${vehicle.name}</li>`;
+    for (let recipe of this.recipes) {
+      markup += `<li class="woo">${recipe.name}</li>`;
     }
 
     return `
-    <div>
-      <h3>${this.title}</h3>
+    <div class="wrap">
+      <h1>${this.title}</h1>
       <ul>
         ${markup}
       </ul>

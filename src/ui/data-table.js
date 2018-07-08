@@ -12,7 +12,7 @@ export class DataTable extends BaseElement {
         
         let thTags = '';
         for (let h of this.headers) {
-            thTags += `<th class="mdl-data-table__cell--non-numeric">${h}</th>\n`;
+            thTags += `<th class="">${h}</th>\n`;
         }
         
         let trTags = '';
@@ -21,7 +21,7 @@ export class DataTable extends BaseElement {
             let tdTags = '';
             for (let property of this.headers) {
                 let field = row[property.toLowerCase()];
-                trTags += `<td class="mdl-data-table__cell--non-numeric">
+                trTags += `<td class="">
                              ${field}
                            </td>
                           `;
@@ -30,7 +30,7 @@ export class DataTable extends BaseElement {
         }
         
         return `
-            <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+            <table class="">
                 <thead>
                     <tr>
                     ${thTags}

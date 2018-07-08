@@ -4,6 +4,7 @@ export class TitleBar extends BaseElement {
     
     constructor(title) {
         super();
+        this.elem = 'titlebar';
         this.title = title;
         this.links = [];
     }
@@ -18,30 +19,23 @@ export class TitleBar extends BaseElement {
     getElementString() {
         let links = '';
         for (let link of this.links)
-            links += `<a class="mdl-navigation__link">
+            links += `<a class="">
                         ${link.title}
                       </a>\n`;
         return `
-            <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-                <header class="mdl-layout__header">
-                    <div class="mdl-layout__header-row">
-                    <!-- Title -->
-                    <span class="mdl-layout-title">${this.title}</span>
-                    <!-- Add spacer, to align navigation to the right -->
-                    <div class="mdl-layout-spacer"></div>
-                    <!-- Navigation. We hide it in small screens. -->
-                    <nav class="mdl-navigation mdl-layout--large-screen-only">
-                        ${links}
-                    </nav>
+            <div class="">
+                <header class="">
+                    <div class="">
+                        <!-- Title -->
+                        <h1 class="">${this.title}</h1>
+
+                        <nav class="">
+                            ${links}
+                        </nav>
                     </div>
                 </header>
-                <div class="mdl-layout__drawer">
-                    <span class="mdl-layout-title">${this.title}</span>
-                    <nav class="mdl-navigation">
-                        ${links}
-                    </nav>
-                </div>
-                <main class="mdl-layout__content">
+
+                <main class="">
                     <div class="page-content"><!-- Your content goes here --></div>
                 </main>
                 </div>

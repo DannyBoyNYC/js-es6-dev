@@ -4,12 +4,13 @@ export class Image extends BaseElement {
     
     constructor(fileName) {
         super();
+        this.elem = 'imagen';
         this.fileName = fileName;
     }
     
     getElementString() {
         return `
-            <img src="${this.fileName}" style="width: 100%;" />
+            <img src="/img/recipes/${this.fileName}.png" style="width: 100%;" />
         `;
     }
 }
