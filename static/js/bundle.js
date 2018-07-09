@@ -193,6 +193,199 @@ var Soup = exports.Soup = function (_Recipe) {
 
 /***/ }),
 
+/***/ "./src/framework/application-base.js":
+/*!*******************************************!*\
+  !*** ./src/framework/application-base.js ***!
+  \*******************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.ApplicationBase = undefined;
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _titleBar = __webpack_require__(/*! ../ui/title-bar.js */ "./src/ui/title-bar.js");
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var ApplicationBase = exports.ApplicationBase = function () {
+  function ApplicationBase(title) {
+    _classCallCheck(this, ApplicationBase);
+
+    this.title = title;
+    this.titleBar = new _titleBar.TitleBar(this.title);
+    this.routeMap = {};
+    this.defaultRoute = null;
+  }
+
+  _createClass(ApplicationBase, [{
+    key: 'activateRoute',
+    value: function activateRoute(route) {
+      // let markup = this.titleBar.getElementString();
+      var markup = document.querySelector('page-content');
+      console.log(markup);
+      // let content = markup.querySelector('page-content');
+      // let content = this.titleBar.element.find('page-content');
+      // content.empty;
+      // this.routeMap[route].appendToElement(content);
+    }
+  }, {
+    key: 'addRoute',
+    value: function addRoute(id, pageObject) {
+      var defaultRoute = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
+
+      this.titleBar.addLink(id, '');
+
+      this.routeMap[id] = pageObject;
+
+      if (defaultRoute) {
+        this.defaultRoute = id;
+      }
+    }
+  }, {
+    key: 'show',
+    value: function show(element) {
+      this.titleBar.appendEl();
+
+      // this.titleBar.element.find('.mdl-navigation__link').click((event) => {
+      //   let route = event.target.innerHTML;
+      //   this.activateRoute(route.trim());
+      // });
+
+      if (this.defaultRoute) {
+        this.activateRoute(this.defaultRoute);
+      }
+    }
+  }]);
+
+  return ApplicationBase;
+}();
+
+/***/ }),
+
+/***/ "./src/framework/page.js":
+/*!*******************************!*\
+  !*** ./src/framework/page.js ***!
+  \*******************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.Page = undefined;
+
+var _baseElement = __webpack_require__(/*! ../ui/base-element.js */ "./src/ui/base-element.js");
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Page = exports.Page = function (_BaseElement) {
+    _inherits(Page, _BaseElement);
+
+    function Page(pageTitle) {
+        _classCallCheck(this, Page);
+
+        var _this = _possibleConstructorReturn(this, (Page.__proto__ || Object.getPrototypeOf(Page)).call(this));
+
+        _this.pageTitle = pageTitle;
+        return _this;
+    }
+
+    return Page;
+}(_baseElement.BaseElement);
+
+/***/ }),
+
+/***/ "./src/home-page.js":
+/*!**************************!*\
+  !*** ./src/home-page.js ***!
+  \**************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.HomePage = undefined;
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
+
+var _page = __webpack_require__(/*! ./framework/page.js */ "./src/framework/page.js");
+
+var _image = __webpack_require__(/*! ./ui/image.js */ "./src/ui/image.js");
+
+var _button = __webpack_require__(/*! ./ui/button.js */ "./src/ui/button.js");
+
+var _index = __webpack_require__(/*! ./index.js */ "./src/index.js");
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var HomePage = exports.HomePage = function (_Page) {
+    _inherits(HomePage, _Page);
+
+    function HomePage() {
+        _classCallCheck(this, HomePage);
+
+        return _possibleConstructorReturn(this, (HomePage.__proto__ || Object.getPrototypeOf(HomePage)).call(this, 'Home'));
+    }
+
+    _createClass(HomePage, [{
+        key: 'createElement',
+        value: function createElement() {
+            _get(HomePage.prototype.__proto__ || Object.getPrototypeOf(HomePage.prototype), 'createElement', this).call(this);
+
+            var i = new _image.Image('../images/drone.jpg');
+            i.appendToElement(this.element);
+
+            var styleString = 'width: 300px; height: 80px; font-size: 26px; margin: 10px;';
+            var b = new _button.Button('Self Driving Cars');
+            b.setStyleString(styleString);
+            b.appendToElement(this.element);
+            b.element.click(function () {
+                return _index.application.activateRoute('Cars');
+            });
+
+            b = new _button.Button('Drones');
+            b.setStyleString(styleString);
+            b.appendToElement(this.element);
+            b.element.click(function () {
+                return _index.application.activateRoute('Drones');
+            });
+        }
+    }, {
+        key: 'getElementString',
+        value: function getElementString() {
+            return '<div style="text-align: center;"></div>';
+        }
+    }]);
+
+    return HomePage;
+}(_page.Page);
+
+/***/ }),
+
 /***/ "./src/index.js":
 /*!**********************!*\
   !*** ./src/index.js ***!
@@ -203,36 +396,72 @@ var Soup = exports.Soup = function (_Recipe) {
 "use strict";
 
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.App = undefined;
+
 var _recipeData = __webpack_require__(/*! ./recipe-data.js */ "./src/recipe-data.js");
 
 var _recipeDataService = __webpack_require__(/*! ./services/recipe-data-service.js */ "./src/services/recipe-data-service.js");
 
-var _recipeList = __webpack_require__(/*! ./ui/recipe-list.js */ "./src/ui/recipe-list.js");
+var _applicationBase = __webpack_require__(/*! ./framework/application-base.js */ "./src/framework/application-base.js");
 
-var _button = __webpack_require__(/*! ./ui/button.js */ "./src/ui/button.js");
+var _homePage = __webpack_require__(/*! ./home-page.js */ "./src/home-page.js");
 
-var _image = __webpack_require__(/*! ./ui/image.js */ "./src/ui/image.js");
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var _titleBar = __webpack_require__(/*! ./ui/title-bar.js */ "./src/ui/title-bar.js");
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-var dataService = new _recipeDataService.RecipeDataService();
-dataService.loadData(_recipeData.recipes);
-console.log(_recipeData.recipes);
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var l = new _recipeList.RecipeList('Recipe List');
-l.addRecipe('Tofu Tods');
-l.addRecipe('Rigatoni');
-l.addRecipe('Caramel Apples');
-l.appendEl(l.elem);
+var App = exports.App = function (_ApplicationBase) {
+  _inherits(App, _ApplicationBase);
 
-var tb = new _titleBar.TitleBar('Recipes!');
-tb.appendEl(tb.elem);
+  function App() {
+    _classCallCheck(this, App);
 
-var b = new _button.Button('More Recipes');
-b.appendEl(b.elem);
+    var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, 'Recipes!'));
 
-var i = new _image.Image('lasagna');
-i.appendEl(i.elem);
+    _this.dataService = new _recipeDataService.RecipeDataService();
+    _this.dataService.loadData(_recipeData.recipes);
+
+    _this.addRoute('Home', new _homePage.HomePage(), true);
+    _this.addRoute('Pastas', null);
+    _this.addRoute('Soups', null);
+    return _this;
+  }
+
+  return App;
+}(_applicationBase.ApplicationBase);
+
+var application = new App();
+application.show();
+
+// import { RecipeList } from './ui/recipe-list.js';
+// import { Button } from './ui/button.js';
+// import { Image } from './ui/image.js';
+// import { TitleBar } from './ui/title-bar.js';
+
+// let dataService = new RecipeDataService();
+// dataService.loadData(recipes);
+// console.log(recipes)
+
+
+// let l = new RecipeList('Recipe List');
+// l.addRecipe('Tofu Tods');
+// l.addRecipe('Rigatoni');
+// l.addRecipe('Caramel Apples');
+// l.appendEl(l.elem);
+
+// let tb = new TitleBar('Recipes!');
+// tb.appendEl(tb.elem);
+
+// let b = new Button('More Recipes');
+// b.appendEl(b.elem)
+
+// let i = new Image('lasagna')
+// i.appendEl(i.elem)
 
 /***/ }),
 
@@ -340,36 +569,13 @@ var _soup = __webpack_require__(/*! ../classes/soup.js */ "./src/classes/soup.js
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-// import {DataError} from './data-error.js';
-
 var RecipeDataService = exports.RecipeDataService = function () {
     function RecipeDataService() {
         _classCallCheck(this, RecipeDataService);
 
         this.pastas = [];
         this.soups = [];
-        // this.errors = [];       
     }
-
-    // getCarByLicense(license) {
-    //     return this.cars.find(function(car) {
-    //         return car.license === license;
-    //     });
-    // }
-
-    // getCarsSortedByLicense() {
-    //     return this.cars.sort(function(car1, car2) {
-    //         if (car1.license < car2.license)
-    //             return -1;
-    //         if (car1.license > car2.license)
-    //             return 1;
-    //         return 0;
-    //     });
-    // }
-
-    // filterCarsByMake(filter) {
-    //     return this.cars.filter(car => car.make.indexOf(filter) >= 0);
-    // }
 
     _createClass(RecipeDataService, [{
         key: 'loadData',
@@ -384,22 +590,12 @@ var RecipeDataService = exports.RecipeDataService = function () {
 
                     switch (data.type) {
                         case 'pasta':
-                            // if (this.validatePastaData(data)) {
                             var pasta = this.loadPasta(data);
                             if (pasta) this.pastas.push(pasta);
-                            // }
-                            // else {
-                            // let e = new DataError('invalid pasta data', data);
-                            // this.errors.push(e);
-                            // }
                             break;
                         case 'soup':
                             this.soups.push(data);
                             break;
-                        // default:
-                        //     let e = new DataError('Invalid recipe type', data);
-                        //     this.errors.push(e);
-                        //     break;
                     }
                 }
             } catch (err) {
@@ -420,34 +616,10 @@ var RecipeDataService = exports.RecipeDataService = function () {
     }, {
         key: 'loadPasta',
         value: function loadPasta(pasta) {
-            // try {
             var p = new _pasta.Pasta(pasta.title, pasta.type, pasta.desciption, pasta.image);
             p.pasta = pasta.pasta;
-            // c.make = car.make;
             return p;
-            // } catch(e) {
-            //     this.errors.push(new DataError('error loading car', car));
-            // }
-            // return null;
         }
-
-        // validateCarData(pasta) {
-        //     let requiredProps = 'license model latLong miles make'.split(' ');
-        //     let hasErrors = false;
-
-        //     for (let field of requiredProps) {
-        //         if (!car[field]) {
-        //             this.errors.push(new DataError(`invalid field ${field}`, car));
-        //             hasErrors = true;
-        //         }
-        //     }
-        //     if (Number.isNaN(Number.parseFloat(car.miles))) {
-        //         this.errors.push(new DataError('invalid milage', car));
-        //         hasErrors = true;
-        //     }
-        //     return !hasErrors;
-        // }
-
     }]);
 
     return RecipeDataService;
@@ -605,91 +777,6 @@ var Image = exports.Image = function (_BaseElement) {
 
 /***/ }),
 
-/***/ "./src/ui/recipe-list.js":
-/*!*******************************!*\
-  !*** ./src/ui/recipe-list.js ***!
-  \*******************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.RecipeList = undefined;
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _baseElement = __webpack_require__(/*! ./base-element.js */ "./src/ui/base-element.js");
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var RecipeList = exports.RecipeList = function (_BaseElement) {
-  _inherits(RecipeList, _BaseElement);
-
-  function RecipeList(title) {
-    _classCallCheck(this, RecipeList);
-
-    var _this = _possibleConstructorReturn(this, (RecipeList.__proto__ || Object.getPrototypeOf(RecipeList)).call(this));
-
-    _this.elem = 'list';
-    _this.title = title;
-    _this.recipes = [];
-    return _this;
-  }
-
-  _createClass(RecipeList, [{
-    key: 'addRecipe',
-    value: function addRecipe(name) {
-      this.recipes.push({
-        name: name
-      });
-    }
-  }, {
-    key: 'getElementString',
-    value: function getElementString() {
-
-      var markup = '';
-      var _iteratorNormalCompletion = true;
-      var _didIteratorError = false;
-      var _iteratorError = undefined;
-
-      try {
-        for (var _iterator = this.recipes[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-          var recipe = _step.value;
-
-          markup += '<li class="woo">' + recipe.name + '</li>';
-        }
-      } catch (err) {
-        _didIteratorError = true;
-        _iteratorError = err;
-      } finally {
-        try {
-          if (!_iteratorNormalCompletion && _iterator.return) {
-            _iterator.return();
-          }
-        } finally {
-          if (_didIteratorError) {
-            throw _iteratorError;
-          }
-        }
-      }
-
-      return '\n    <div class="wrap">\n      <h1>' + this.title + '</h1>\n      <ul>\n        ' + markup + '\n      </ul>\n    </div>\n    ';
-    }
-  }]);
-
-  return RecipeList;
-}(_baseElement.BaseElement);
-
-/***/ }),
-
 /***/ "./src/ui/title-bar.js":
 /*!*****************************!*\
   !*** ./src/ui/title-bar.js ***!
@@ -749,7 +836,7 @@ var TitleBar = exports.TitleBar = function (_BaseElement) {
                 for (var _iterator = this.links[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
                     var link = _step.value;
 
-                    links += '<a class="">\n                        ' + link.title + '\n                      </a>\n';
+                    links += '\n            <li>\n                <a class="" href="#">' + link.title + '</a>\n            </li>';
                 }
             } catch (err) {
                 _didIteratorError = true;
@@ -766,7 +853,7 @@ var TitleBar = exports.TitleBar = function (_BaseElement) {
                 }
             }
 
-            return '\n            <div class="">\n                <header class="">\n                    <div class="">\n                        <!-- Title -->\n                        <h1 class="">' + this.title + '</h1>\n\n                        <nav class="">\n                            ' + links + '\n                        </nav>\n                    </div>\n                </header>\n\n                <main class="">\n                    <div class="page-content"><!-- Your content goes here --></div>\n                </main>\n                </div>\n        ';
+            return '\n            <div class="">\n                <header class="">\n                    <div class="">\n                        <!-- Title -->\n                        <h1>' + this.title + '</h1>\n                        <nav>\n                            <ul>\n                            ' + links + '\n                            </ul>\n                        </nav>\n                    </div>\n                </header>\n\n                <main class="">\n                    <div class="page-content">\n                        <!-- Your content goes here -->\n                    </div>\n                </main>\n                </div>\n        ';
         }
     }]);
 

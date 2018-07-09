@@ -8,18 +8,38 @@ export class ApplicationBase {
     this.routeMap = {};
     this.defaultRoute = null;
   }
+
+  activateRoute(route) {
+    // let markup = this.titleBar.getElementString();
+    let markup = document.querySelector('page-content')
+    console.log(markup);
+    // let content = markup.querySelector('page-content');
+    // let content = this.titleBar.element.find('page-content');
+    // content.empty;
+    // this.routeMap[route].appendToElement(content);
+  }
+
+  addRoute(id, pageObject, defaultRoute = false) {
+    this.titleBar.addLink(id, '');
+
+    this.routeMap[id] = pageObject;
+
+    if (defaultRoute) {
+      this.defaultRoute = id;
+    }
+  }
   
   show(element) {
-    this.titleBar.appendToElement(element);
-    
+    this.titleBar.appendEl();
+
     // this.titleBar.element.find('.mdl-navigation__link').click((event) => {
     //   let route = event.target.innerHTML;
     //   this.activateRoute(route.trim());
     // });
     
-    // if (this.defaultRoute) {
-    //   this.activateRoute(this.defaultRoute);
-    // }
+    if (this.defaultRoute) {
+      this.activateRoute(this.defaultRoute);
+    }
   }
   
 }

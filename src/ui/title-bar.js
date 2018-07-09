@@ -14,29 +14,33 @@ export class TitleBar extends BaseElement {
             title,
             href
         });
-    }   
+    }
     
     getElementString() {
         let links = '';
         for (let link of this.links)
-            links += `<a class="">
-                        ${link.title}
-                      </a>\n`;
+            links += `
+            <li>
+                <a class="" href="#">${link.title}</a>
+            </li>`;
         return `
             <div class="">
                 <header class="">
                     <div class="">
                         <!-- Title -->
-                        <h1 class="">${this.title}</h1>
-
-                        <nav class="">
+                        <h1>${this.title}</h1>
+                        <nav>
+                            <ul>
                             ${links}
+                            </ul>
                         </nav>
                     </div>
                 </header>
 
                 <main class="">
-                    <div class="page-content"><!-- Your content goes here --></div>
+                    <div class="page-content">
+                        <!-- Your content goes here -->
+                    </div>
                 </main>
                 </div>
         `;
