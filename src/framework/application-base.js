@@ -20,6 +20,7 @@ export class ApplicationBase {
     }
 
     activateRoute(route) {
+        console.log(this.titleBar)
         let content = this.titleBar.element.find('.page-content');
         content.empty();
         

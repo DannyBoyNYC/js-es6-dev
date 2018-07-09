@@ -10744,6 +10744,7 @@ var ApplicationBase = exports.ApplicationBase = function () {
     }, {
         key: 'activateRoute',
         value: function activateRoute(route) {
+            console.log(this.titleBar);
             var content = this.titleBar.element.find('.page-content');
             content.empty();
 
